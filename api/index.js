@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // app.use("/", indexRouter);
 // app.use("/users", usersRouter);
 
-app.get("/test", (req, res) => {
+app.get("/api/test", (req, res) => {
   res.json({ hello: "world" });
 });
 
