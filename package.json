@@ -1,7 +1,6 @@
 {
   "name": "vite",
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "concurrently --kill-others \"npm run dev-backend\" \"npm run dev-frontend\"",
     "build": "vite build",
@@ -14,11 +13,13 @@
     "concurrently": "^8.2.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^16.3.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
     "nodemon": "^3.0.1",
+    "redis": "^4",
     "vue": "^3.2.45"
   },
   "devDependencies": {

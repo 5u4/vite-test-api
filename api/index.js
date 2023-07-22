@@ -3,6 +3,10 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const dotenv = require("dotenv");
+dotenv.config();
+
+const createClient = require("redis").createClient;
 
 // var indexRouter = require("./routes/index");
 // var usersRouter = require("./routes/users");
@@ -22,8 +26,18 @@ app.use(express.static(path.join(__dirname, "public")));
 // app.use("/", indexRouter);
 // app.use("/users", usersRouter);
 
-app.get("/api/test", (req, res) => {
-  res.json({ hello: "world" });
+app.get("/api/test", async (req, res) => {
+  const client = createClient({
+    url: process.env.REDIS_URL,
+  });
+  client.on("error", err => console.log("Redis Client Error", err));
+  await client.connect();
+
+  await client.set("key", "world from redis");
+  const value = await client.get("key");
+  await client.disconnect();
+
+  res.json({ hello: value });
 });
 
 // catch 404 and forward to error handler
