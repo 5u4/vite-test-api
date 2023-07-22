@@ -1,6 +1,4 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
-
-export default async function handler(request: VercelRequest, response: VercelResponse) {
+export default async function handler(request, response) {
   if (!request.url) return response.status(400);
 
   const url = new URL(request.url, `http://${request.headers.host}`);
